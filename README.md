@@ -1,0 +1,1 @@
+chmod +x *.sh for each scripts
