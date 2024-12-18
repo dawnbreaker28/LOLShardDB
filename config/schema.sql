@@ -39,12 +39,12 @@ CREATE TABLE Champions (
 
 -- Table: PlayerStats
 CREATE TABLE PlayerStats (
-    MatchID INT NOT NULL,
-    PlayerID INT NOT NULL,
+    MatchID VARCHAR(100) NOT NULL,
+    PlayerID VARCHAR(50) NOT NULL,
     Kills INT NOT NULL,
     Deaths INT NOT NULL,
     Assists INT NOT NULL,
-    ChampionPlayed INT NOT NULL,
+    ChampionPlayed VARCHAR(50) NOT NULL,
     -- Side VARCHAR(10) NOT NULL,
     PRIMARY KEY (MatchID, PlayerID),
     FOREIGN KEY (MatchID) REFERENCES Matches(MatchID),

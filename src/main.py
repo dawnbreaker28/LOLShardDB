@@ -5,11 +5,11 @@ from db_utils import insert_data
 # Define files and database table mappings
 FILES_TO_TABLES = {
     "playerstats.pkl": {"table": "PlayerStats", "mapping": "playerstats"},
-    "matches.pkl": {"table": "Matches", "mapping": "matches"},
-    "teams.pkl": {"table": "Teams", "mapping": "teams"},
-    "champions.pkl": {"table": "Champions", "mapping": "champions"},
-    "players.pkl": {"table": "Players", "mapping": "players"},
-    "teamhistory.pkl": {"table": "TeamHistory", "mapping": "teamhistory"}
+    # "matches.pkl": {"table": "Matches", "mapping": "matches"},
+    # "teams.pkl": {"table": "Teams", "mapping": "teams"},
+    # "champions.pkl": {"table": "Champions", "mapping": "champions"},
+    # "players.pkl": {"table": "Players", "mapping": "players"},
+    # "teamhistory.pkl": {"table": "TeamHistory", "mapping": "teamhistory"}
 }
 
 def process_and_insert():
