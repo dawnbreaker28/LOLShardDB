@@ -45,7 +45,7 @@ CREATE TABLE PlayerStats (
     Deaths INT NOT NULL,
     Assists INT NOT NULL,
     ChampionPlayed INT NOT NULL,
-    Side VARCHAR(10) NOT NULL,
+    -- Side VARCHAR(10) NOT NULL,
     PRIMARY KEY (MatchID, PlayerID),
     FOREIGN KEY (MatchID) REFERENCES Matches(MatchID),
     FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
