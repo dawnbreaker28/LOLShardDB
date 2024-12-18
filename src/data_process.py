@@ -1,7 +1,12 @@
+import pandas as pd
 import pickle
 
-# anti-serialize .pkl file
-with open('../data/player_stats_2424.pkl', 'rb') as file:
-    loaded_data = pickle.load(file)
+# load .pkl file
+with open("../data/player_stats_2424.pkl", "rb") as f:
+    data = pickle.load(f)
 
-print("Loaded Data:", loaded_data)
+# convert to DataFrame
+df = pd.DataFrame(data)
+
+# print data format
+print(df.head())
