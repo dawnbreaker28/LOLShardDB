@@ -10,29 +10,33 @@ COLUMN_MAPPINGS = {
     },
     "matches": {
         "GameId": "MatchID",
-        "Date": "Date",
-        "Winner": "WinnerID",
-        "Duration": "Duration"
+        "DateTime UTC": "Date",
+        "DST": "Season",
+        "Team1": "BlueTeamName",
+        "Team2": "RedTeamName",
+        "WinTeam": "WinnerTeamName",
+        "Gamelength Number": "Duration"
     },
     "teams": {
-        "TeamName": "TeamName",
+        "Name": "TeamName",
+        "Short": "TeamNameShort",
         "Region": "Region"
     },
     "champions": {
-        "ChampionName": "ChampionName",
-        "Role": "Role"
+        "Name": "ChampionName",
     },
     "players": {
-        "PlayerName": "PlayerName",
-        "TeamName": "TeamName",
-        "Role": "Role",
+        "ID": "PlayerID",
+        "Name": "Name",
+        "TeamLast": "CurrentTeamName",
+        "Birthdate": "DateOfBirth",
         "Nationality": "Nationality",
         "DateOfBirth": "DateOfBirth"
     },
     "teamhistory": {
+        "ID": "PlayerID",
         "TeamName": "TeamName",
-        "Season": "Season",
-        "Wins": "Wins",
-        "Losses": "Losses"
+        "StartDate": "StartDate",
+        "EndDate": "EndDate"
     }
 }

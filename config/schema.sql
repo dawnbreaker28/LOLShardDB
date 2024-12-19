@@ -1,76 +1,61 @@
--- Table: Teams
-DROP TABLE IF EXISTS Teams CASCADE;
+CREATE TABLE Players (
+	PlayerID INT PRIMARY KEY,
+	Name VARCHAR(100) NOT NULL,
+	CurrentTeamName INT,
+	Nationality VARCHAR(50) NOT NULL,
+	DateOfBirth DATE NOT NULL,
+	FOREIGN KEY (CurrentTeamName) REFERENCES Teams(TeamName)
+);
 
 CREATE TABLE Teams (
-    TeamID INT PRIMARY KEY,
-    TeamName VARCHAR(100) NOT NULL,
-    Region VARCHAR(50) NOT NULL
+	TeamName VARCHAR(100) NOT NULL,
+	TeamNameShort VARCHAR(50) NOT NULL,
+	Region VARCHAR(50) NOT NULL
 );
-
--- Table: Players
-DROP TABLE IF EXISTS Players CASCADE;
-
-CREATE TABLE Players (
-    PlayerID VARCHAR(50) PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    CurrentTeamID INT,
-    Role VARCHAR(50) NOT NULL,
-    Nationality VARCHAR(50) NOT NULL,
-    DateOfBirth DATE NOT NULL,
-    FOREIGN KEY (CurrentTeamID) REFERENCES Teams(TeamID)
-);
-
--- Table: Matches
-DROP TABLE IF EXISTS Matches CASCADE;
 
 CREATE TABLE Matches (
-    MatchID VARCHAR(100) PRIMARY KEY,
-    Date DATE NOT NULL,
-    Season VARCHAR(50) NOT NULL,
-    BlueTeamID INT NOT NULL,
-    RedTeamID INT NOT NULL,
-    WinnerID INT NOT NULL,
-    Duration INT NOT NULL,
-    MatchType VARCHAR(50) NOT NULL,
-    FOREIGN KEY (BlueTeamID) REFERENCES Teams(TeamID), 
-    FOREIGN KEY (RedTeamID) REFERENCES Teams(TeamID), 
-    FOREIGN KEY (WinnerID) REFERENCES Teams(TeamID)
+	MatchID INT PRIMARY KEY,
+	Date DATE NOT NULL,
+	Season VARCHAR(50) NOT NULL,
+	BlueTeamName INT NOT NULL,
+	RedTeamName INT NOT NULL,
+	Team1Players VARCHAR(50) NOT NULL,
+	Team2Players VARCHAR(50) NOT NULL,
+	Team1Bans VARCHAR(50) NOT NULL,
+	Team1Picks VARCHAR(50) NOT NULL,
+	Team2Bans VARCHAR(50) NOT NULL,
+	Team2Picks VARCHAR(50) NOT NULL,
+	WinnerID INT NOT NULL,
+	Duration INT NOT NULL,
+	FOREIGN KEY (BlueTeamName) REFERENCES Teams(TeamName), 
+FOREIGN KEY (RedTeamName) REFERENCES Teams(TeamName), 
+FOREIGN KEY (WinnerName) REFERENCES Teams(TeamName)
 );
-
--- Table: Champions
-DROP TABLE IF EXISTS Champions CASCADE;
-
-CREATE TABLE Champions (
-    -- ChampionID INT PRIMARY KEY,
-    ChampionName VARCHAR(50) PRIMARY KEY
-);
-
--- Table: PlayerStats
-DROP TABLE IF EXISTS PlayerStats CASCADE;
 
 CREATE TABLE PlayerStats (
-    MatchID VARCHAR(100) NOT NULL,
-    PlayerID VARCHAR(50) NOT NULL,
-    Kills INT NOT NULL,
-    Deaths INT NOT NULL,
-    Assists INT NOT NULL,
-    ChampionPlayed VARCHAR(50) NOT NULL,
-    -- Side VARCHAR(10) NOT NULL,
-    PRIMARY KEY (MatchID, PlayerID),
-    FOREIGN KEY (MatchID) REFERENCES Matches(MatchID),
-    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
-    FOREIGN KEY (ChampionPlayed) REFERENCES Champions(ChampionName)
+   	MatchID INT NOT NULL,
+PlayerID INT NOT NULL,
+Kills INT NOT NULL,
+Deaths INT NOT NULL,
+Assists INT NOT NULL,
+Side VARCHAR(50) NOT NULL,
+ChampionPlayed INT NOT NULL,
+PRIMARY KEY (MatchID, PlayerID),
+FOREIGN KEY (MatchID) REFERENCES Matches(MatchID),
+FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
+FOREIGN KEY (ChmpionPlayed) REFERENCES Champions(ChampionID)
 );
 
--- Table: TeamHistory
-DROP TABLE IF EXISTS TeamHistory CASCADE;
+CREATE TABLE Champions (
+	ChampionName VARCHAR(50) PRIMARY KEY NOT NULL
+);
 
 CREATE TABLE TeamHistory (
-    PlayerID VARCHAR(50) NOT NULL,
-    TeamID INT NOT NULL,
-    StartDate DATE NOT NULL,
-    EndDate DATE,
-    PRIMARY KEY (PlayerID, TeamID, StartDate),
-    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
-    FOREIGN KEY (TeamID) REFERENCES Teams(TeamID)
+PlayerID INT NOT NULL,
+TeamName INT NOT NULL,
+StartDate DATE NOT NULL,
+EndDate DATE,
+PRIMARY KEY (PlayerID, TeamName, StartDate),
+FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
+FOREIGN KEY (TeamName) REFERENCES Teams(TeamName)
 );
