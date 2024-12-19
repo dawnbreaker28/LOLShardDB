@@ -14,9 +14,9 @@ COLUMN_MAPPINGS = {
         "DST": "Season",
         "Team1": "BlueTeamName",
         "Team2": "RedTeamName",
-        "WinTeam": "WinnerTeamName",
+        "WinTeam": "WinnerID",
         "Gamelength Number": "Duration"
-    },
+    }, 
     "teams": {
         "Name": "TeamName",
         "Short": "TeamNameShort",
@@ -31,7 +31,7 @@ COLUMN_MAPPINGS = {
         "TeamLast": "CurrentTeamName",
         "Birthdate": "DateOfBirth",
         "Nationality": "Nationality",
-        "DateOfBirth": "DateOfBirth"
+        # "DateOfBirth": "DateOfBirth"
     },
     "teamhistory": {
         "ID": "PlayerID",
