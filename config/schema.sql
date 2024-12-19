@@ -28,22 +28,22 @@ CREATE TABLE Matches (
 	WinnerID INT NOT NULL,
 	Duration INT NOT NULL,
 	FOREIGN KEY (BlueTeamName) REFERENCES Teams(TeamName), 
-FOREIGN KEY (RedTeamName) REFERENCES Teams(TeamName), 
-FOREIGN KEY (WinnerName) REFERENCES Teams(TeamName)
+    FOREIGN KEY (RedTeamName) REFERENCES Teams(TeamName), 
+    FOREIGN KEY (WinnerName) REFERENCES Teams(TeamName)
 );
 
 CREATE TABLE PlayerStats (
    	MatchID INT NOT NULL,
-PlayerID INT NOT NULL,
-Kills INT NOT NULL,
-Deaths INT NOT NULL,
-Assists INT NOT NULL,
-Side VARCHAR(50) NOT NULL,
-ChampionPlayed INT NOT NULL,
-PRIMARY KEY (MatchID, PlayerID),
-FOREIGN KEY (MatchID) REFERENCES Matches(MatchID),
-FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
-FOREIGN KEY (ChmpionPlayed) REFERENCES Champions(ChampionID)
+    PlayerID INT NOT NULL,
+    Kills INT NOT NULL,
+    Deaths INT NOT NULL,
+    Assists INT NOT NULL,
+    Side VARCHAR(50) NOT NULL,
+    ChampionPlayed INT NOT NULL,
+    PRIMARY KEY (MatchID, PlayerID),
+    FOREIGN KEY (MatchID) REFERENCES Matches(MatchID),
+    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
+    FOREIGN KEY (ChmpionPlayed) REFERENCES Champions(ChampionID)
 );
 
 CREATE TABLE Champions (
@@ -51,11 +51,11 @@ CREATE TABLE Champions (
 );
 
 CREATE TABLE TeamHistory (
-PlayerID INT NOT NULL,
-TeamName INT NOT NULL,
-StartDate DATE NOT NULL,
-EndDate DATE,
-PRIMARY KEY (PlayerID, TeamName, StartDate),
-FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
-FOREIGN KEY (TeamName) REFERENCES Teams(TeamName)
+    PlayerID INT NOT NULL,
+    TeamName INT NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE,
+    PRIMARY KEY (PlayerID, TeamName, StartDate),
+    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID),
+    FOREIGN KEY (TeamName) REFERENCES Teams(TeamName)
 );
