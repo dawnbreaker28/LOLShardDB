@@ -1,15 +1,17 @@
-from process_data import load_pkl, apply_column_mapping
-from column_mapping import COLUMN_MAPPINGS
+from process_data import load_pkl_to_dataframe, apply_column_mapping
+from colomn_mapping import COLUMN_MAPPINGS
 from db_utils import insert_data
 
-# Define files and database table mappings
-FILES_TO_TABLES = {
+# Define files and database table mappings, order important, need to be strictly followed.
+FILES_TO_TABLES = { 
+    "teams.pkl": {"table": "Teams", "mapping": "teams"},
+    "players.pkl": {"table": "Players", "mapping": "players"},
+    
+    "matches.pkl": {"table": "Matches", "mapping": "matches"},
+    
+    "champions.pkl": {"table": "Champions", "mapping": "champions"},
     "playerstats.pkl": {"table": "PlayerStats", "mapping": "playerstats"},
-    # "matches.pkl": {"table": "Matches", "mapping": "matches"},
-    # "teams.pkl": {"table": "Teams", "mapping": "teams"},
-    # "champions.pkl": {"table": "Champions", "mapping": "champions"},
-    # "players.pkl": {"table": "Players", "mapping": "players"},
-    # "teamhistory.pkl": {"table": "TeamHistory", "mapping": "teamhistory"}
+    "teamhistory.pkl": {"table": "TeamHistory", "mapping": "teamhistory"}
 }
 
 def process_and_insert():
@@ -19,7 +21,7 @@ def process_and_insert():
         file_path = f"../data/{file_name}"
         
         # Load data
-        df = load_pkl(file_path)
+        df = load_pkl_to_dataframe(file_path)
         if df is None:
             continue
 

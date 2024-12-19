@@ -1,23 +1,47 @@
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
+import pickle
 
 # Function to load a .pkl file into a pandas DataFrame
 def load_pkl_to_dataframe(file_path):
     """
-    Load a .pkl file and convert it into a pandas DataFrame.
-
-    Args:
-        file_path (str): Path to the .pkl file.
-
-    Returns:
-        DataFrame: A pandas DataFrame containing the data.
+    Load a .pkl file and ensure it is converted to a Pandas DataFrame.
     """
     try:
-        df = pd.read_pickle(file_path)
-        print("Data successfully loaded into DataFrame.")
-        print(df.head())  # Display the first few rows for confirmation
-        return df
+        # Load data from pickle file
+        with open(file_path, "rb") as file:
+            data = pickle.load(file)
+
+        # If data is a list, convert it to a DataFrame
+        if isinstance(data, list):
+            data = pd.DataFrame(data)
+
+        print("Data successfully loaded into DataFrame:")
+        print(data.head())  # Verify first rows
+        return data
+
     except Exception as e:
         print(f"Error loading the .pkl file: {e}")
         return None
+
+def apply_column_mapping(dataframe: pd.DataFrame, mapping: dict) -> pd.DataFrame:
+    """
+    Apply column mapping to rename DataFrame columns.
+
+    Args:
+        dataframe (pd.DataFrame): The input DataFrame.
+        mapping (dict): A dictionary mapping original column names to new column names.
+
+    Returns:
+        pd.DataFrame: The DataFrame with renamed columns.
+    """
+    # Rename columns using the provided mapping
+    dataframe = dataframe.rename(columns=mapping)
+    
+    # Ensure all mapped columns exist
+    for new_column in mapping.values():
+        if new_column not in dataframe.columns:
+            dataframe[new_column] = None  # Add missing columns with default None values
+    
+    return dataframe
