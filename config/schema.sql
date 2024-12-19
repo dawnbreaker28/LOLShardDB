@@ -29,9 +29,9 @@ CREATE TABLE Players (
 
 -- Matches Table
 CREATE TABLE Matches (
-    MatchID VARCHAR(50) PRIMARY KEY,
-    Date DATE NOT NULL,
-    Season VARCHAR(50) NOT NULL,
+    MatchID VARCHAR(150) PRIMARY KEY,
+    Date DATE ,
+    Season VARCHAR(50) ,
     BlueTeamName VARCHAR(100) NOT NULL,
     RedTeamName VARCHAR(100) NOT NULL,
     Team1Players VARCHAR(50) ,
@@ -41,17 +41,17 @@ CREATE TABLE Matches (
     Team2Bans VARCHAR(50),
     Team2Picks VARCHAR(50),
     WinnerID VARCHAR(100) NOT NULL,
-    Duration FLOAT NOT NULL
+    Duration FLOAT 
 );
 
 -- PlayerStats Table
 CREATE TABLE PlayerStats (
-    MatchID VARCHAR(50) NOT NULL,
+    MatchID VARCHAR(150) NOT NULL,
     PlayerID VARCHAR(50) NOT NULL,
     Kills INT NOT NULL,
     Deaths INT NOT NULL,
     Assists INT NOT NULL,
-    Side VARCHAR(50) NOT NULL,
+    Side VARCHAR(50),
     ChampionPlayed VARCHAR(100) NOT NULL,
     PRIMARY KEY (MatchID, PlayerID)
 );

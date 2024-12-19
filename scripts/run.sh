@@ -3,8 +3,23 @@
 set -e  # Exit immediately if a command exits with a non-zero status.
 
 # Define paths
+INIT_SCRIPT='./init.sh'
 VALIDATE_SCRIPT="./validate.sh"
 MAIN_SCRIPT="../src/main.py"
+
+
+# Step 0: Init database instance
+echo "========================================"
+echo "Step 0: Init database instance"
+echo "========================================"
+
+if [ -f "$INIT_SCRIPT" ]; then
+    bash "$INIT_SCRIPT"
+    echo "Init successfully."
+else
+    echo "Error: Init script not found at $INIT_SCRIPT."
+    exit 1
+fi
 
 # Step 1: Validate Database Instances
 echo "========================================"
